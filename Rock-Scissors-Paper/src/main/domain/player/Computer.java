@@ -1,7 +1,7 @@
-package main.member.player;
+package main.domain.player;
 
-import main.member.move.RpsMove;
-import main.strategy.Strategy;
+import main.domain.move.RpsMove;
+import main.domain.strategy.Strategy;
 
 public class Computer implements Player {
     private final Strategy strategy;

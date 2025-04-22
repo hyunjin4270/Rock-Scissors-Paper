@@ -1,11 +1,11 @@
-package main.member.move;
+package main.domain.move;
 
-import main.Service.Outcome;
+import main.Outcome;
 
 import java.util.List;
 
-import static main.Service.Outcome.*;
-import static main.Service.Outcome.WIN;
+import static main.Outcome.*;
+import static main.Outcome.WIN;
 
 public class Scissors implements RpsMove {
 

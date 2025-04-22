@@ -1,6 +1,6 @@
 package main.repository;
 
-import main.member.move.RpsMove;
+import main.domain.move.RpsMove;
 
 import java.util.List;
 import java.util.Optional;

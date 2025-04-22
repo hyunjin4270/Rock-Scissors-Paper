@@ -1,15 +1,12 @@
 package main.repository;
 
-import main.member.move.RpsMove;
+import main.domain.move.RpsMove;
 
 import java.util.*;
 
 public class MemoryMoveRepository implements MoveRepository {
-    private Map<String, RpsMove> store;
+    private Map<String, RpsMove> store = new HashMap<>();
 
-    public MemoryMoveRepository(Map<String, RpsMove> store) {
-        this.store = store;
-    }
 
     @Override
     public boolean save(RpsMove move) {

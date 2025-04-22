@@ -1,9 +1,9 @@
-package main.strategy;
+package main.domain.strategy;
 
-import main.member.move.Paper;
-import main.member.move.Rock;
-import main.member.move.RpsMove;
-import main.member.move.Scissors;
+import main.domain.move.Paper;
+import main.domain.move.Rock;
+import main.domain.move.RpsMove;
+import main.domain.move.Scissors;
 
 import java.util.List;
 

@@ -1,18 +1,12 @@
 package main.repository;
 
-import main.member.player.Player;
+import main.domain.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class MemoryPlayerRepository implements PlayerRepository {
-    Map<String, Player> store;
+    Map<String, Player> store = new HashMap<>();
 
-    public MemoryPlayerRepository(Map<String, Player> store) {
-        this.store = store;
-    }
 
     @Override
     public boolean save(Player player) {

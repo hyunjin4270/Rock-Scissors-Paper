@@ -1,6 +1,6 @@
 package main.view;
 
-import main.member.player.User;
+import main.domain.player.User;
 
 public class DefaultDisplay implements Display {
     @Override

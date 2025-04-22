@@ -1,6 +1,6 @@
 package main.repository;
 
-import main.member.player.Player;
+import main.domain.player.Player;
 
 import java.util.List;
 import java.util.Optional;

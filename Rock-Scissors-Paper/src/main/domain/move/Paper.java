@@ -1,10 +1,10 @@
-package main.member.move;
+package main.domain.move;
 
-import main.Service.Outcome;
+import main.Outcome;
 
 import java.util.List;
 
-import static main.Service.Outcome.*;
+import static main.Outcome.*;
 
 public class Paper implements RpsMove {
 

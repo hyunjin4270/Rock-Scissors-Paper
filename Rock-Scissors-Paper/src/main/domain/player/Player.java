@@ -1,6 +1,6 @@
-package main.member.player;
+package main.domain.player;
 
-import main.member.move.RpsMove;
+import main.domain.move.RpsMove;
 
 public interface Player {
     void makeMove();

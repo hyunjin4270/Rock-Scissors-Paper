@@ -1,6 +1,6 @@
 package main.controller;
 
-import main.member.move.RpsMove;
+import main.domain.move.RpsMove;
 
 public interface InputHandler {
     RpsMove readMove();

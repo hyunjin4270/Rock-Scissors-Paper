@@ -1,6 +1,6 @@
-package main.Service;
+package main.domain.rule;
 
-import main.member.player.User;
+import main.domain.player.User;
 
 import java.util.List;
 

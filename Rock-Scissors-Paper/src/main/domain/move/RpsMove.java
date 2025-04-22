@@ -1,6 +1,6 @@
-package main.member.move;
+package main.domain.move;
 
-import main.Service.Outcome;
+import main.Outcome;
 
 import java.util.List;
 
