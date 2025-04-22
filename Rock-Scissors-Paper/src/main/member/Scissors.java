@@ -7,14 +7,21 @@ import java.util.List;
 import static main.Service.Outcome.*;
 import static main.Service.Outcome.WIN;
 
-public class Scissors implements RpsMove{
+public class Scissors implements RpsMove {
+
     @Override
-    public Outcome compete(RpsMove move) {
-        if (move == null) return ERROR;
-        if (move instanceof Rock) return LOSE;
-        if (move instanceof Scissors) return DRAW;
-        return WIN;
+    public String getName() {
+        return "scissors";
     }
+
+    @Override
+    public Outcome compare(RpsMove other) {
+        if (other instanceof Paper) return WIN;
+        if (other instanceof  Scissors) return DRAW;
+        if (other instanceof Rock) return LOSE;
+        return UNDECIDED;
+    }
+
 
     @Override
     public List<String> asEmoji() {

@@ -5,6 +5,7 @@ import main.Service.Outcome;
 import java.util.List;
 
 public interface RpsMove {
-    Outcome compete(RpsMove move);
+    String getName();
+    Outcome compare(RpsMove other);
     List<String> asEmoji();
 }
