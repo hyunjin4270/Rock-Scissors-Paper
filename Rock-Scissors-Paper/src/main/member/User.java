@@ -1,5 +1,7 @@
 package main.member;
 
+import main.member.move.RpsMove;
+
 public class User {
     private String name = "Player";
     private RpsMove move;

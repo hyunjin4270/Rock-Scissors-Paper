@@ -1,9 +1,6 @@
 package main.view;
 
-import main.member.RpsMove;
 import main.member.User;
-
-import java.util.Scanner;
 
 public class DefaultDisplay implements Display {
     @Override

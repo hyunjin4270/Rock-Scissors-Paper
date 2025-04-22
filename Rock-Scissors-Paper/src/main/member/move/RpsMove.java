@@ -1,4 +1,4 @@
-package main.member;
+package main.member.move;
 
 import main.Service.Outcome;
 

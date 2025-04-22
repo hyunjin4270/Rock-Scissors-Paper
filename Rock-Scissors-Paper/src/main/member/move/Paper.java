@@ -1,4 +1,4 @@
-package main.member;
+package main.member.move;
 
 import main.Service.Outcome;
 
@@ -6,19 +6,19 @@ import java.util.List;
 
 import static main.Service.Outcome.*;
 
-public class Rock implements RpsMove {
+public class Paper implements RpsMove {
+
     @Override
     public String getName() {
-        return "rock";
+        return "paper";
     }
 
     @Override
     public Outcome compare(RpsMove other) {
-        if (other instanceof Scissors) return WIN;
-        if (other instanceof  Rock) return DRAW;
-        if (other instanceof Paper) return LOSE;
+        if (other instanceof Rock) return WIN;
+        if (other instanceof  Paper) return DRAW;
+        if (other instanceof Scissors) return LOSE;
         return UNDECIDED;
-
     }
 
 
