@@ -7,30 +7,28 @@ import java.util.*;
 public class MemoryMoveRepository implements MoveRepository {
     private Map<String, RpsMove> store;
 
+    public MemoryMoveRepository(Map<String, RpsMove> store) {
+        this.store = store;
+    }
+
     @Override
-    public RpsMove save(RpsMove move) {
-        return null;
+    public boolean save(RpsMove move) {
+        if (move == null) return false;
+        store.put(move.getName(), move);
+        return true;
     }
 
     @Override
     public boolean removeByName(String name) {
-        for (String key : store.keySet()) {
-            if (!key.equals(name)) continue;
-
-            store.remove(key);
-            return true;
-        }
-        return false;
+        return store.remove(name) != null;
     }
+
 
     @Override
     public Optional<RpsMove> findByName(String name) {
-        for (String key : store.keySet()) {
-            if (!key.equals(name)) continue;
-            return Optional.of(store.get(key));
-        }
-        return Optional.empty();
+        return Optional.ofNullable(store.get(name));
     }
+
 
     @Override
     public List<RpsMove> findAll() {
