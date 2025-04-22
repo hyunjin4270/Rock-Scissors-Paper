@@ -1,15 +1,24 @@
 package main.Service;
 
-import main.member.User;
-import main.view.DefaultDisplay;
+import main.controller.InputHandler;
+import main.member.player.Computer;
+import main.member.player.User;
+import main.member.move.RpsMove;
 import main.view.Display;
 
-import static main.Service.Outcome.*;
+import java.util.List;
 
 public class Vanila implements RpsRule {
-    Display display = new DefaultDisplay();
+    Display display;
+    InputHandler inputHandler;
+    List<RpsMove> moves;
+
+
     @Override
-    public void execute() {
+    public void execute(List<User> users) {
+        for (User user : users) {
+
+        }
     }
 
     private User defineWinner(User user1, User user2) {

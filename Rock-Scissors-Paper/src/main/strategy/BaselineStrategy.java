@@ -25,4 +25,6 @@ public class BaselineStrategy implements Strategy {
     public RpsMove selectMove() {
         return moves.get(random.nextInt(moves.size()));
     }
+
+
 }

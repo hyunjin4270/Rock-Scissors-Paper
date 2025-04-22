@@ -1,6 +1,6 @@
 package main.view;
 
-import main.member.User;
+import main.member.player.User;
 
 public interface Display {
     void printTurn(User user);
