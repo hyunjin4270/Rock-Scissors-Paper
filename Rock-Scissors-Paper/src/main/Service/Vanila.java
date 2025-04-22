@@ -1,7 +1,6 @@
 package main.Service;
 
 import main.controller.InputHandler;
-import main.member.player.Computer;
 import main.member.player.User;
 import main.member.move.RpsMove;
 import main.view.Display;

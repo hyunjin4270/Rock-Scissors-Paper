@@ -1,6 +1,5 @@
 package main.member.player;
 
-import main.controller.InputHandler;
 import main.member.move.RpsMove;
 
 public class User implements Player {

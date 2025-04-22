@@ -1,10 +1,7 @@
 package main.controller;
 
-import java.util.Scanner;
+import main.member.move.RpsMove;
 
-public class InputHandler {
-    private Scanner scanner = new Scanner(System.in);
-    public String readInput() {
-        return scanner.nextLine();
-    }
+public interface InputHandler {
+    RpsMove readMove();
 }
