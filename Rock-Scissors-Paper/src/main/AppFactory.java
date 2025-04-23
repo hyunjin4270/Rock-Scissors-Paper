@@ -9,10 +9,8 @@ import main.repository.MoveRepository;
 import main.repository.PlayerRepository;
 import main.domain.rule.RpsRule;
 
+import java.util.Scanner;
+
 public class AppFactory {
-    private static final MoveRepository moveRepository = new MemoryMoveRepository();
-    private static final PlayerRepository playerRepository = new MemoryPlayerRepository();
-    private static final InputHandler inputHandler = new ConsoleInputHandler();
-    private static RpsRule rpsRule = new Vanilla();
 
 }

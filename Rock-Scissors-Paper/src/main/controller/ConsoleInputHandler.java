@@ -7,7 +7,11 @@ import main.repository.PlayerRepository;
 import java.util.Scanner;
 
 public class ConsoleInputHandler implements InputHandler {
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public ConsoleInputHandler(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     @Override
     public RpsMove readMove() {

@@ -5,7 +5,6 @@ import main.domain.move.RpsMove;
 public class User implements Player {
     private String name;
     private RpsMove move;
-    private InputHandler inputHandler;
 
     @Override
     public void makeMove() {
