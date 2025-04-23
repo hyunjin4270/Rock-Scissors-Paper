@@ -2,6 +2,8 @@ package main.domain.player;
 
 import main.domain.move.RpsMove;
 
+import java.util.Map;
+
 public class User implements Player {
     private String name;
     private RpsMove move;
@@ -19,4 +21,5 @@ public class User implements Player {
     public RpsMove getMove() {
         return null;
     }
+
 }
