@@ -8,14 +8,16 @@ import java.util.Scanner;
 
 public class ConsoleInputHandler implements InputHandler {
     Scanner scanner = new Scanner(System.in);
-    private final MoveRepository moveRepository;
-    private final PlayerRepository playerRepository;
-    private
-
 
     @Override
     public RpsMove readMove() {
         return null;
     }
+
+    @Override
+    public String start() {
+        return null;
+    }
+
 
 }

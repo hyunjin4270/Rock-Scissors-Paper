@@ -7,9 +7,10 @@ import java.util.List;
 import static main.Outcome.*;
 
 public class Rock implements RpsMove {
+    private final String name = "rock";
     @Override
     public String getName() {
-        return "rock";
+        return name;
     }
 
     @Override

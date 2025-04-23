@@ -7,17 +7,18 @@ import java.util.List;
 import static main.Outcome.*;
 
 public class Paper implements RpsMove {
+    private final String name = "paper";
 
     @Override
     public String getName() {
-        return "paper";
+        return name;
     }
 
     @Override
     public Outcome compare(RpsMove other) {
-        if (other instanceof Rock) return WIN;
-        if (other instanceof  Paper) return DRAW;
-        if (other instanceof Scissors) return LOSE;
+        if (other instanceof Scissors) return WIN;
+        if (other instanceof  Rock) return DRAW;
+        if (other instanceof Paper) return LOSE;
         return UNDECIDED;
     }
 

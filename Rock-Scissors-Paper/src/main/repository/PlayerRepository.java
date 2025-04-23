@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface PlayerRepository {
     boolean save(Player player);
-    boolean removeByName(String name);
+    Optional<Player> removeByName(String name);
     Optional<Player> findByName(String name);
     List<Player> findAll();
 }

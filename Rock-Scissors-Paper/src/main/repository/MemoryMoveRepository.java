@@ -15,10 +15,11 @@ public class MemoryMoveRepository implements MoveRepository {
         return true;
     }
 
-    @Override
-    public boolean removeByName(String name) {
-        return store.remove(name) != null;
+    public Optional<RpsMove> removeByName(String name) {
+        return Optional.ofNullable(store.remove(name));
     }
+
+
 
 
     @Override

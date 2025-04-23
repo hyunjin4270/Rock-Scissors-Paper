@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface MoveRepository {
     boolean save(RpsMove move);
-    boolean removeByName(String name);
+    Optional<RpsMove> removeByName(String name);
     Optional<RpsMove> findByName(String name);
     List<RpsMove> findAll();
 }

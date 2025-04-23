@@ -4,4 +4,6 @@ import main.domain.move.RpsMove;
 
 public interface InputHandler {
     RpsMove readMove();
+    String start();
+
 }

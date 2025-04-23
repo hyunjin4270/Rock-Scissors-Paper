@@ -15,10 +15,10 @@ public class MemoryPlayerRepository implements PlayerRepository {
         return true;
     }
 
-    @Override
-    public boolean removeByName(String name) {
-        return store.remove(name) != null;
+    public Optional<Player> removeByName(String name) {
+        return Optional.ofNullable(store.remove(name));
     }
+
 
     @Override
     public Optional<Player> findByName(String name) {

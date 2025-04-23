@@ -8,10 +8,10 @@ import static main.Outcome.*;
 import static main.Outcome.WIN;
 
 public class Scissors implements RpsMove {
-
+    private final String name = "scissors";
     @Override
     public String getName() {
-        return "scissors";
+        return name;
     }
 
     @Override
