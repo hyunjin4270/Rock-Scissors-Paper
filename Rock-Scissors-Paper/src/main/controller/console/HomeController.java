@@ -3,6 +3,7 @@ package main.controller.console;
 import main.domain.player.Player;
 import main.service.GameService;
 import main.service.HomeService;
+import main.view.ConsoleViewHelper;
 
 
 import java.util.Scanner;
@@ -21,21 +22,23 @@ public class HomeController {
     }
 
     public void execute() {
-        while (true) {
-            home();
+        home();
+        while(true) {
             userPrompt(host.getname());
             String input = scanner.nextLine();
-
-            if (!isVaild(input)) {
+            if(!isVaild(input)) {
                 errorMessage();
                 continue;
             }
-
-            //homeService 적용
+            break;
         }
+
+
+        //homeService 적용
     }
 
     private boolean isVaild(String input) {
+        if(input == null) return false;
         if (!isInteger(input)) return false;
         return true;
     }
