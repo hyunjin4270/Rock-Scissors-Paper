@@ -22,10 +22,21 @@ public class Vanilla implements RpsRule {
         return determineWinner(unique, players);
     }
 
+    /**
+     * 플레이어 무브들을 판별하여 무승부 상황인지 결정합니다.
+     * @param unique 중복이 제거된 무브들의 종류
+     * @return 무승부 상황인지 반환
+     */
     private boolean isDraw(Set<RpsMove> unique) {
         return unique.size() != 2;
     }
 
+    /**
+     * 플레이어들 중 승자와 패자를 판별
+     * @param unique 중복이 제거된 무브들의 종류
+     * @param players 플레이어 무브
+     * @return 게임결과값
+     */
     private GameResult determineWinner(Set<RpsMove> unique, Map<Player, RpsMove> players) {
         Iterator<RpsMove> moves = unique.iterator();
         List<Player> winners = new ArrayList<>();
