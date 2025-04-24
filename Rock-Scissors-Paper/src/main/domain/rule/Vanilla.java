@@ -17,7 +17,11 @@ import static main.domain.Outcome.WIN;
 public class Vanilla implements RpsRule {
     @Override
     public GameResult decide(Map<Player, RpsMove> players) {
-        Set<RpsMove> unique = Set.copyOf(players.values());
+//        Set<RpsMove> unique = Set.copyOf(players.values());
+        Set<RpsMove> unique = new HashSet<>();
+        for (RpsMove value : players.values()) {
+            unique.add(value);
+        }
         if(isDraw(unique)) return GameResult.draw(new ArrayList<>(players.keySet()));
         return determineWinner(unique, players);
     }

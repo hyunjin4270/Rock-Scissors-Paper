@@ -18,20 +18,7 @@ public class GameService {
         this.playerRepository = playerRepository;
     }
 
-    /**
-     * 해당 플레이어에 대한 무브 등록
-     * @throws IllegalStateException 플레이어 선택이 이미 이루어짐
-     * @throws MoveNotFoundException 존재하지 않는 무브를 고름
-     * @param player 라운드 플레이어 (null 불가)
-     * @param moveName 플레이어가 제시한 무브 (null 또는 존재하지 않는 무브 불가)
-     */
-    public void chooseMove(Player player, String moveName) {
-        if (participants.containsKey(player)) throw new IllegalStateException(player.getname() + "는 이미 선택을 완료했음");
-        RpsMove move = moveRepository.findByName(moveName)
-                .orElseThrow(() -> new MoveNotFoundException(moveName));
 
-        participants.put(player, move);
-    }
 
     /**
      * 유효성 사전검증
