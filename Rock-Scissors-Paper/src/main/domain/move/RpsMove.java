@@ -1,6 +1,6 @@
 package main.domain.move;
 
-import main.Outcome;
+import main.domain.Outcome;
 
 import java.util.List;
 

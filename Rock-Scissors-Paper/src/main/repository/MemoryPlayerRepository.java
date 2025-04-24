@@ -26,6 +26,11 @@ public class MemoryPlayerRepository implements PlayerRepository {
     }
 
     @Override
+    public int count() {
+        return store.size();
+    }
+
+    @Override
     public List<Player> findAll() {
         return new ArrayList<>(store.values());
     }

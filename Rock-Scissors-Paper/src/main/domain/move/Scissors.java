@@ -1,11 +1,11 @@
 package main.domain.move;
 
-import main.Outcome;
+import main.domain.Outcome;
 
 import java.util.List;
 
-import static main.Outcome.*;
-import static main.Outcome.WIN;
+import static main.domain.Outcome.*;
+import static main.domain.Outcome.WIN;
 
 public class Scissors implements RpsMove {
     private final String name = "scissors";

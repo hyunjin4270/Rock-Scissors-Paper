@@ -27,6 +27,11 @@ public class MemoryMoveRepository implements MoveRepository {
         return Optional.ofNullable(store.get(name));
     }
 
+    @Override
+    public int count() {
+        return store.size();
+    }
+
 
     @Override
     public List<RpsMove> findAll() {

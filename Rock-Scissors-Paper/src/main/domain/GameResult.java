@@ -1,11 +1,10 @@
 package main.domain;
 
-import main.Outcome;
 import main.domain.player.Player;
 
 import java.util.*;
 
-import static main.Outcome.*;
+import static main.domain.Outcome.*;
 
 public class GameResult {
     private final Map<Player, Outcome> playerResult;

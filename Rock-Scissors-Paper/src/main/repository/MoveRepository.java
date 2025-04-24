@@ -9,5 +9,6 @@ public interface MoveRepository {
     boolean save(RpsMove move);
     Optional<RpsMove> removeByName(String name);
     Optional<RpsMove> findByName(String name);
+    int count();
     List<RpsMove> findAll();
 }

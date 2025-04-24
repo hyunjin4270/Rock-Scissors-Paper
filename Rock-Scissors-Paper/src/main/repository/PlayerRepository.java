@@ -9,5 +9,6 @@ public interface PlayerRepository {
     boolean save(Player player);
     Optional<Player> removeByName(String name);
     Optional<Player> findByName(String name);
+    int count();
     List<Player> findAll();
 }
