@@ -14,6 +14,10 @@ public class BaselineStrategy implements Strategy {
     public BaselineStrategy(Map<String, RpsMove> moves) {
         if (moves == null) throw new IllegalArgumentException("moves is null");
         if (moves.isEmpty()) throw new IllegalStateException("moves is empty");
+        for (Map.Entry<String, RpsMove> e : moves.entrySet()) {
+            if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
+            if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
+        }
         this.moves = new ArrayList<>(moves.values());
     }
 
