@@ -36,22 +36,6 @@ public class GameService {
         if (playerRepository.count() < 2) throw new IllegalStateException("You can't have only one player.");
     }
 
-    /**
-     * 플레이어 리스트 생성
-     * @return 리스트 형태의 플레이어
-     */
-    public List<Player> createPlayerList() {
-        return ;
-    }
-
-    /**
-     * 무브 리스트 생성
-     * @return 맵 형태의 무브
-     */
-    public Map<String, RpsMove> createMoveMap() {
-        ;
-    }
-
     public void start() {
         List<Player> playerList = playerRepository.findAll();
         List<RpsMove> moves = moveRepository.findAll();
@@ -62,6 +46,10 @@ public class GameService {
         gameSession = new GameSession(playerList, moveMap, rule, strategy);
     }
 
+    public void end() {
+        gameSession = null;
+    }
+
     public void choose(Player player, String moveName) {
         if (player == null) throw new IllegalArgumentException("player is null");
         if (moveName == null) throw new IllegalArgumentException("moveName is null");
@@ -69,7 +57,7 @@ public class GameService {
     }
 
     public void autoChoose(Player computer) {
-        RpsMove selected = gameSession.computerStrategy(computer);
+        RpsMove selected = gameSession.computerStrategy(computer, strategy);
     }
 
 }

@@ -51,11 +51,6 @@ public class GameSessionTest {
         testComputerStrategyNullPlayer();
         testComputerStrategyNotComputer();
         testComputerStrategyRegisteredComputer();
-        testComputerStrategyNullMoves();
-        testComputerStrategyEmptyMoves();
-        testComputerStrategyMovesNullKey();
-        testComputerStrategyMovesNullValue();
-        testComputerStrategyMovesLessThanThree();
         testComputerStrategyNullStrategy();
         testComputerStrategyValid();
 
@@ -182,7 +177,7 @@ public class GameSessionTest {
     private static void testComputerStrategyNullPlayer() {
         GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
         try {
-            session.computerStrategy(null, VALID_MOVES, STUB_STRATEGY);
+            session.computerStrategy(null, STUB_STRATEGY);
             assert false : "null player 시 IllegalArgumentException";
         } catch (IllegalArgumentException e) {
             assert "player is null".equals(e.getMessage());
@@ -194,7 +189,7 @@ public class GameSessionTest {
         GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
         Player user = new User("Alice");
         try {
-            session.computerStrategy(user, VALID_MOVES, STUB_STRATEGY);
+            session.computerStrategy(user, STUB_STRATEGY);
             assert false : "User 인스턴스는 IllegalStateException";
         } catch (IllegalStateException e) {
             assert "player is not computer".equals(e.getMessage());
@@ -208,86 +203,20 @@ public class GameSessionTest {
         playersWithComp.add(comp);
         GameSession session = new GameSession(playersWithComp, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
         try {
-            session.computerStrategy(comp, VALID_MOVES, STUB_STRATEGY);
+            session.computerStrategy(comp, STUB_STRATEGY);
             assert false : "등록된 Computer 인스턴스는 IllegalArgumentException";
         } catch (IllegalArgumentException e) {
             assert "player is not registered".equals(e.getMessage());
         }
     }
 
-    /** moves가 null일 때 IllegalArgumentException 발생 테스트 */
-    private static void testComputerStrategyNullMoves() {
-        GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
-        Computer comp = new Computer("CPU");
-        try {
-            session.computerStrategy(comp, null, STUB_STRATEGY);
-            assert false : "null moves 시 IllegalArgumentException";
-        } catch (IllegalArgumentException e) {
-            assert "moves is null".equals(e.getMessage());
-        }
-    }
-
-    /** moves가 비어있을 때 IllegalStateException 발생 테스트 */
-    private static void testComputerStrategyEmptyMoves() {
-        GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
-        Computer comp = new Computer("CPU");
-        try {
-            session.computerStrategy(comp, Collections.emptyMap(), STUB_STRATEGY);
-            assert false : "empty moves 시 IllegalStateException";
-        } catch (IllegalStateException e) {
-            assert "moves is empty".equals(e.getMessage());
-        }
-    }
-
-    /** moves에 null key가 있을 때 IllegalStateException 발생 테스트 */
-    private static void testComputerStrategyMovesNullKey() {
-        GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
-        Computer comp = new Computer("CPU");
-        Map<String, RpsMove> m = new HashMap<>(VALID_MOVES);
-        m.put(null, new Rock());
-        try {
-            session.computerStrategy(comp, m, STUB_STRATEGY);
-            assert false : "moves null key 시 IllegalStateException";
-        } catch (IllegalStateException e) {
-            assert "players can't get null key".equals(e.getMessage());
-        }
-    }
-
-    /** moves에 null value가 있을 때 IllegalStateException 발생 테스트 */
-    private static void testComputerStrategyMovesNullValue() {
-        GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
-        Computer comp = new Computer("CPU");
-        Map<String, RpsMove> m = new HashMap<>(VALID_MOVES);
-        m.put("Lizard", null);
-        try {
-            session.computerStrategy(comp, m, STUB_STRATEGY);
-            assert false : "moves null value 시 IllegalStateException";
-        } catch (IllegalStateException e) {
-            assert "players can't get null value".equals(e.getMessage());
-        }
-    }
-
-    /** moves 크기가 3 미만일 때 IllegalStateException 발생 테스트 */
-    private static void testComputerStrategyMovesLessThanThree() {
-        GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
-        Computer comp = new Computer("CPU");
-        Map<String, RpsMove> m = new HashMap<>();
-        m.put("Rock", new Rock());
-        m.put("Paper", new Paper());
-        try {
-            session.computerStrategy(comp, m, STUB_STRATEGY);
-            assert false : "moves size <3 시 IllegalStateException";
-        } catch (IllegalStateException e) {
-            assert "moves cannot be less than three.".equals(e.getMessage());
-        }
-    }
 
     /** strategy가 null일 때 IllegalArgumentException 발생 테스트 */
     private static void testComputerStrategyNullStrategy() {
         GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
         Computer comp = new Computer("CPU");
         try {
-            session.computerStrategy(comp, VALID_MOVES, null);
+            session.computerStrategy(comp, null);
             assert false : "null strategy 시 IllegalArgumentException";
         } catch (IllegalArgumentException e) {
             assert "strategy is empty".equals(e.getMessage());
@@ -298,7 +227,7 @@ public class GameSessionTest {
     private static void testComputerStrategyValid() {
         GameSession session = new GameSession(VALID_PLAYERS, VALID_MOVES, STUB_RULE, STUB_STRATEGY);
         Computer comp = new Computer("CPU");
-        RpsMove move = session.computerStrategy(comp, VALID_MOVES, STUB_STRATEGY);
+        RpsMove move = session.computerStrategy(comp, STUB_STRATEGY);
         assert move == STUB_ROCK : "유효한 호출은 stubStrategy에서 반환된 객체를 그대로 반환해야 함";
     }
 
