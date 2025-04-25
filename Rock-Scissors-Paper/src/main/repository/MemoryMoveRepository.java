@@ -9,10 +9,10 @@ public class MemoryMoveRepository implements MoveRepository {
 
 
     @Override
-    public boolean save(RpsMove move) {
-        if (move == null) return false;
+    public RpsMove save(RpsMove move) {
+        if (move == null) throw new IllegalArgumentException("move is null");
         store.put(move.getName(), move);
-        return true;
+        return move;
     }
 
     public Optional<RpsMove> removeByName(String name) {

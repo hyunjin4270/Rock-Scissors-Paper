@@ -9,10 +9,10 @@ public class MemoryPlayerRepository implements PlayerRepository {
 
 
     @Override
-    public boolean save(Player player) {
-        if (player == null) return false;
+    public Player save(Player player) {
+        if (player == null) throw new IllegalArgumentException("player is null");
         store.put(player.getName(), player);
-        return true;
+        return player;
     }
 
     public Optional<Player> removeByName(String name) {
