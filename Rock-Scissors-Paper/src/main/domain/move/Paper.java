@@ -16,9 +16,9 @@ public class Paper implements RpsMove {
 
     @Override
     public Outcome compare(RpsMove other) {
-        if (other instanceof Scissors) return WIN;
-        if (other instanceof  Rock) return DRAW;
-        if (other instanceof Paper) return LOSE;
+        if (other instanceof Rock) return WIN;
+        if (other instanceof  Paper) return DRAW;
+        if (other instanceof Scissors) return LOSE;
         return UNDECIDED;
     }
 
