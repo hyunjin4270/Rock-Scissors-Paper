@@ -52,7 +52,7 @@ public class GameSession {
      * @param moveName 플레이어가 제시한 무브 (null 또는 존재하지 않는 무브 불가)
      */
     public void chooseMove(Player player, String moveName) {
-        if (players.contains(player)) throw new IllegalStateException(player.getname() + " is already selected");
+        if (players.contains(player)) throw new IllegalStateException(player.getName() + " is already selected");
         if (!moves.containsKey(moveName)) throw new MoveNotFoundException(moveName);
 
         behaviors.put(player, moves.get(moveName));

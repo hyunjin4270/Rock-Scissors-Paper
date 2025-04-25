@@ -4,27 +4,22 @@ import main.domain.move.RpsMove;
 import main.domain.strategy.Strategy;
 
 public class Computer implements Player {
-    private final Strategy strategy;
     private final String name;
-    private RpsMove move;
 
-    public Computer(Strategy strategy, int number) {
-        this.strategy = strategy;
+    public Computer(int number) {
         this.name = "Computer" + number;
     }
+    public Computer() {
+        this.name = "Computer";
+    }
 
-    @Override
-    public void makeMove() {
-        move = strategy.selectMove();
+    public Computer(String name) {
+        this.name = name;
     }
 
     @Override
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    @Override
-    public RpsMove getMove() {
-        return move;
-    }
 }

@@ -6,20 +6,19 @@ import java.util.Map;
 
 public class User implements Player {
     private String name;
-    private RpsMove move;
 
-    @Override
-    public void makeMove() {
+    public User(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String getname() {
-        return "";
+    public User() {
+        this.name = name;
     }
 
+
     @Override
-    public RpsMove getMove() {
-        return null;
+    public String getName() {
+        return name;
     }
 
 }

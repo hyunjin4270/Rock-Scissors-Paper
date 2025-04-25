@@ -11,7 +11,7 @@ public class MemoryPlayerRepository implements PlayerRepository {
     @Override
     public boolean save(Player player) {
         if (player == null) return false;
-        store.put(player.getname(), player);
+        store.put(player.getName(), player);
         return true;
     }
 

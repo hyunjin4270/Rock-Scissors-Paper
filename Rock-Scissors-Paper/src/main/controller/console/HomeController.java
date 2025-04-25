@@ -24,7 +24,7 @@ public class HomeController {
     public void execute() {
         home();
         while(true) {
-            userPrompt(host.getname());
+            userPrompt(host.getName());
             String input = scanner.nextLine();
             if(!isVaild(input)) {
                 errorMessage();
