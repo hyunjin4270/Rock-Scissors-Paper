@@ -45,17 +45,10 @@ public class GameSession {
      * @param strategy Computer의 전략
      * @return 전략에 따라 결정된 무브
      */
-    public RpsMove computerStrategy(Player player, Map<String, RpsMove> moves, Strategy strategy) {
+    public RpsMove computerStrategy(Player player, Strategy strategy) {
         if (player == null) throw new IllegalArgumentException("player is null");
         if (!(player instanceof Computer)) throw new IllegalStateException("player is not computer");
         if (players.contains(player)) throw new IllegalArgumentException("player is not registered");
-        if (moves == null) throw new IllegalArgumentException("moves is null");
-        if (moves.isEmpty()) throw new IllegalStateException("moves is empty");
-        for (Map.Entry<String, RpsMove> e : moves.entrySet()) {
-            if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
-            if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
-        }
-        if (moves.size() < 3) throw new IllegalStateException("moves cannot be less than three.");
         if (strategy == null) throw new IllegalArgumentException("strategy is empty");
 
         return strategy.selectMove();
