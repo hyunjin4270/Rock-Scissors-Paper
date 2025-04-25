@@ -7,6 +7,7 @@ import main.domain.player.Player;
 import main.domain.player.User;
 import main.repository.MoveRepository;
 
+import java.io.IOException;
 import java.util.*;
 
 import static main.domain.Outcome.WIN;
@@ -17,11 +18,10 @@ import static main.domain.Outcome.WIN;
 public class Vanilla implements RpsRule {
     @Override
     public GameResult decide(Map<Player, RpsMove> players) {
-//        Set<RpsMove> unique = Set.copyOf(players.values());
-        Set<RpsMove> unique = new HashSet<>();
-        for (RpsMove value : players.values()) {
-            unique.add(value);
-        }
+        if (players == null) throw new IllegalArgumentException("players is null");
+        if (players.isEmpty()) throw new IllegalStateException("players is empty");
+
+        Set<RpsMove> unique = new HashSet<>(players.values());
         if(isDraw(unique)) return GameResult.draw(new ArrayList<>(players.keySet()));
         return determineWinner(unique, players);
     }
@@ -58,7 +58,6 @@ public class Vanilla implements RpsRule {
                 losers.add(entry.getKey());
             }
         }
-
         return GameResult.result(winners, losers);
     }
 }
