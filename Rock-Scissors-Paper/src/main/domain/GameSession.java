@@ -19,8 +19,18 @@ public class GameSession {
     private final Strategy strategy;
 
     public GameSession(List<Player> players, Map<String, RpsMove> moves, RpsRule rule, Strategy strategy) {
-        if(rule == null) throw new IllegalArgumentException("rule is null");
-        if(strategy == null) throw new IllegalArgumentException("strategy is null");
+        if (players == null) throw new IllegalArgumentException("players is null");
+        if (players.isEmpty()) throw new IllegalStateException("players is empty");
+        if (players.size() == 1) throw new IllegalStateException("players can't have only one player.");
+        if (moves == null) throw new IllegalArgumentException("moves is null");
+        if (moves.isEmpty()) throw new IllegalStateException("moves is empty");
+        for (Map.Entry<String, RpsMove> e : moves.entrySet()) {
+            if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
+            if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
+        }
+        if (moves.size() < 3) throw new IllegalStateException("moves cannot be less than three.");
+        if (rule == null) throw new IllegalArgumentException("rule is null");
+        if (strategy == null) throw new IllegalArgumentException("strategy is null");
 
         this.players = players;
         this.moves = moves;
@@ -41,6 +51,11 @@ public class GameSession {
         if (players.contains(player)) throw new IllegalArgumentException("player is not registered");
         if (moves == null) throw new IllegalArgumentException("moves is null");
         if (moves.isEmpty()) throw new IllegalStateException("moves is empty");
+        for (Map.Entry<String, RpsMove> e : moves.entrySet()) {
+            if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
+            if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
+        }
+        if (moves.size() < 3) throw new IllegalStateException("moves cannot be less than three.");
         if (strategy == null) throw new IllegalArgumentException("strategy is empty");
 
         return strategy.selectMove();

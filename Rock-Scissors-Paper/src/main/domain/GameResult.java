@@ -14,7 +14,8 @@ public class GameResult {
     }
 
     public static GameResult draw(List<Player> participants) {
-        if (participants.isEmpty()) throw new IllegalArgumentException("참가자 목록이 비어있음");
+        if (participants == null) throw new IllegalArgumentException("participants is null");
+        if (participants.isEmpty()) throw new IllegalStateException("participants is empty");
 
         Map<Player, Outcome> players = new HashMap<>();
         for (Player participant : participants) {
@@ -24,8 +25,10 @@ public class GameResult {
     }
 
     public static GameResult result(List<Player> winner, List<Player> loser) {
-        if (winner.isEmpty()) throw new IllegalArgumentException("승리자 목록이 비어있음");
-        if (loser.isEmpty()) throw new IllegalArgumentException("패배자 목록이 비어있음");
+        if (winner == null) throw new IllegalArgumentException("winner is null");
+        if (loser == null) throw new IllegalArgumentException("loser is null");
+        if (winner.isEmpty()) throw new IllegalStateException("winner is empty");
+        if (loser.isEmpty()) throw new IllegalStateException("loser is empty");
 
         Map<Player, Outcome> players = new HashMap<>();
         for (Player player : winner) {

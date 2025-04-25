@@ -20,7 +20,10 @@ public class Vanilla implements RpsRule {
     public GameResult decide(Map<Player, RpsMove> players) {
         if (players == null) throw new IllegalArgumentException("players is null");
         if (players.isEmpty()) throw new IllegalStateException("players is empty");
-
+        for (Map.Entry<Player, RpsMove> e : players.entrySet()) {
+            if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
+            if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
+        }
         Set<RpsMove> unique = new HashSet<>(players.values());
         if(isDraw(unique)) return GameResult.draw(new ArrayList<>(players.keySet()));
         return determineWinner(unique, players);
