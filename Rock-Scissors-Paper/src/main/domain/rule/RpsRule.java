@@ -12,4 +12,5 @@ import java.util.Map;
 
 public interface RpsRule {
     public GameResult decide(Map<Player, RpsMove> players);
+    public String getName();
 }

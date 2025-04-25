@@ -29,6 +29,11 @@ public class Vanilla implements RpsRule {
         return determineWinner(unique, players);
     }
 
+    @Override
+    public String getName() {
+        return "vanilla";
+    }
+
     /**
      * 플레이어 무브들을 판별하여 무승부 상황인지 결정합니다.
      * @param unique 중복이 제거된 무브들의 종류

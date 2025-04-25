@@ -8,6 +8,7 @@ import main.domain.strategy.Strategy;
 import main.exception.MoveNotFoundException;
 import main.repository.MoveRepository;
 import main.repository.PlayerRepository;
+import main.session.SessionManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,13 +18,14 @@ import java.util.Optional;
 public class GameService {
     private final MoveRepository moveRepository;
     private final PlayerRepository playerRepository;
-    private GameSession gameSession;
-    private Strategy strategy;
-    private RpsRule rule;
-    public GameService(MoveRepository moveRepository, PlayerRepository playerRepository) {
+    private final SessionManager sessionManager;
+
+    public GameService(MoveRepository moveRepository, PlayerRepository playerRepository, SessionManager sessionManager) {
         if (moveRepository == null) throw new IllegalArgumentException("moveRepository is null");
+        if (sessionManager == null) throw new IllegalArgumentException("sessionManager is null");
         if (playerRepository == null) throw new IllegalArgumentException("playerRepository is null");
         this.moveRepository = moveRepository;
+        this.sessionManager = sessionManager;
         this.playerRepository = playerRepository;
     }
 
@@ -36,28 +38,7 @@ public class GameService {
         if (playerRepository.count() < 2) throw new IllegalStateException("You can't have only one player.");
     }
 
-    public void start() {
-        List<Player> playerList = playerRepository.findAll();
-        List<RpsMove> moves = moveRepository.findAll();
-        Map<String, RpsMove> moveMap = new HashMap<>();
-        for (RpsMove move : moves) {
-            moveMap.put(move.getName(), move);
-        }
-        gameSession = new GameSession(playerList, moveMap, rule, strategy);
-    }
 
-    public void end() {
-        gameSession = null;
-    }
 
-    public void choose(Player player, String moveName) {
-        if (player == null) throw new IllegalArgumentException("player is null");
-        if (moveName == null) throw new IllegalArgumentException("moveName is null");
-        gameSession.chooseMove(player, moveName);
-    }
-
-    public void autoChoose(Player computer) {
-        RpsMove selected = gameSession.computerStrategy(computer, strategy);
-    }
 
 }

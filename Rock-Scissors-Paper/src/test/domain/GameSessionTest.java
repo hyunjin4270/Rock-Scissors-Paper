@@ -10,6 +10,7 @@ import main.domain.rule.RpsRule;
 import main.domain.player.Player;
 import main.domain.player.User;
 import main.domain.player.Computer;
+import main.domain.rule.Vanilla;
 import main.domain.strategy.Strategy;
 import main.exception.MoveNotFoundException;
 
@@ -20,8 +21,7 @@ public class GameSessionTest {
 
     private static final RpsMove STUB_ROCK = new Rock();
     private static final Strategy STUB_STRATEGY = () -> STUB_ROCK;
-    private static final RpsRule STUB_RULE = players ->
-            GameResult.draw(new ArrayList<>(players.keySet()));
+    private static final RpsRule STUB_RULE = new Vanilla();
     private static final Map<String, RpsMove> VALID_MOVES = createValidMoves();
     private static final List<Player> VALID_PLAYERS = List.of(
             new User("Alice"), new User("Bob")

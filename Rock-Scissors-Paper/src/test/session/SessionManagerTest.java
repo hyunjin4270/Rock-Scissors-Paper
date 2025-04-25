@@ -1,5 +1,6 @@
 package test.session;
 
+import main.domain.rule.Vanilla;
 import main.session.SessionManager;
 import main.domain.GameSession;
 import main.domain.GameResult;
@@ -39,8 +40,7 @@ public class SessionManagerTest {
                 "Paper", new Paper(),
                 "Scissors", new Scissors()
         );
-        RpsRule rule = participants ->
-                GameResult.draw(new ArrayList<>(participants.keySet()));
+        RpsRule rule = new Vanilla();
         Strategy strategy = () -> new Rock();
         return new GameSession(players, moves, rule, strategy);
     }
