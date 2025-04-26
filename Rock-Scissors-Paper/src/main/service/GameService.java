@@ -30,6 +30,14 @@ public class GameService {
     }
 
 
+    public void start(RpsRule rule, Strategy strategy) {
+        String id = sessionManager.createId();
+        sessionManager.create(new GameSession(
+               id,
+
+                ));
+    }
+
     /**
      * 유효성 사전검증
      */

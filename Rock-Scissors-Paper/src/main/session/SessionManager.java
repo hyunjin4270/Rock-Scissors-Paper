@@ -10,11 +10,14 @@ import java.util.UUID;
 public class SessionManager {
     private final Map<String, GameSession> sessions = new HashMap<>();
 
-    public String create(GameSession session) {
+    public String create(GameSession session, String id) {
         if (session == null) throw new IllegalArgumentException("session is null");
-        String id = UUID.randomUUID().toString();
         sessions.put(id, session);
         return id;
+    }
+
+    public String createId() {
+        return UUID.randomUUID().toString();
     }
 
     public GameSession get(String id) {

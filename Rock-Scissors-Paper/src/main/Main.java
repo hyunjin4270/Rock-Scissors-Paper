@@ -1,8 +1,9 @@
 package main;
 
+import java.util.UUID;
+
 public class Main {
     public static void main(String[] args) {
-        String name = "abcd";
-        System.out.printf("[%9s] players turn : ", name);
+        System.out.println(UUID.randomUUID().toString());
     }
 }
