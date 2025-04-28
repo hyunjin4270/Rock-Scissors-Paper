@@ -8,31 +8,24 @@ import main.domain.strategy.Strategy;
 import main.exception.MoveNotFoundException;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class GameSession {
     private final Map<String, RpsMove> moves;
     private final RpsRule rule;
     private final Map<Player, RpsMove> behaviors = new HashMap<>();
     private final Strategy strategy;
-    private final String sessionId;
 
-    public GameSession(String sessionId, Map<String, RpsMove> moves, RpsRule rule, Strategy strategy) {
+    public GameSession(Map<String, RpsMove> moves, RpsRule rule, Strategy strategy) {
         if (moves == null) throw new IllegalArgumentException("moves is null");
         if (moves.isEmpty()) throw new IllegalStateException("moves is empty");
         for (Map.Entry<String, RpsMove> e : moves.entrySet()) {
             if (e.getKey()   == null) throw new IllegalStateException("players can't get null key");
             if (e.getValue() == null) throw new IllegalStateException("players can't get null value");
         }
-        if (moves.size() < 3) throw new IllegalStateException("moves cannot be less than three.");
         if (rule == null) throw new IllegalArgumentException("rule is null");
         if (strategy == null) throw new IllegalArgumentException("strategy is null");
-        if (sessionId == null) throw new IllegalArgumentException("sessionId is null");
-        UUID.fromString(sessionId);
 
-        this.sessionId = sessionId;
         this.moves = moves;
         this.rule = rule;
         this.strategy = strategy;
@@ -40,15 +33,9 @@ public class GameSession {
 
     /**
      * AI가 정해져있는 정책에 따라 결정한 무브값을 반환하는 메서드입니다
-     * @param player Computer객체
-     * @param strategy Computer의 전략
      * @return 전략에 따라 결정된 무브
      */
-    public RpsMove computerStrategy(Player player, Strategy strategy) {
-        if (player == null) throw new IllegalArgumentException("player is null");
-        if (!(player instanceof Computer)) throw new IllegalStateException("player is not computer");
-        if (strategy == null) throw new IllegalArgumentException("strategy is empty");
-
+    public RpsMove computerStrategy() {
         return strategy.selectMove();
     }
 
@@ -62,9 +49,5 @@ public class GameSession {
         if (!moves.containsKey(moveName)) throw new MoveNotFoundException(moveName);
 
         behaviors.put(player, moves.get(moveName));
-    }
-
-    public String getSessionId() {
-        return sessionId;
     }
 }

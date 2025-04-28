@@ -10,15 +10,15 @@ import main.repository.MoveRepository;
 import main.repository.PlayerRepository;
 import main.session.SessionManager;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class GameService {
     private final MoveRepository moveRepository;
     private final PlayerRepository playerRepository;
     private final SessionManager sessionManager;
+//    private final MoveCatalog moveCatalog;
 
     public GameService(MoveRepository moveRepository, PlayerRepository playerRepository, SessionManager sessionManager) {
         if (moveRepository == null) throw new IllegalArgumentException("moveRepository is null");
@@ -30,23 +30,43 @@ public class GameService {
     }
 
 
-    public void start(RpsRule rule, Strategy strategy) {
-        String id = sessionManager.createId();
-        sessionManager.create(new GameSession(
-               id,
-
-                ));
-    }
-
     /**
-     * 유효성 사전검증
+     * 새 게임을 시작하고, 생성된 세션 ID를 반환합니다.
+     *
+     * @param selectedMoveNames 사용자가 고른 무브 이름 리스트
+     * @param rule              사용할 룰
+     * @param strategy          사용할 전략
+     * @return 새로 생성된 GameSession의 ID
+     * @throws IllegalArgumentException 입력 파라미터가 잘못된 경우
+     * @throws IllegalStateException    전제 조건이 충족되지 않거나 세션 생성에 실패한 경우
+     * @throws MoveNotFoundException    무브 값이 잘못된 경우
      */
-    public void validatePreconditions() {
-        if (moveRepository.count() < 3) throw new IllegalStateException("MoveRepository element cannot be less than three.");
-        if (playerRepository.count() < 2) throw new IllegalStateException("You can't have only one player.");
+    public String start(List<String> selectedMoveNames, RpsRule rule, Strategy strategy) {
+        if (selectedMoveNames == null) throw new IllegalArgumentException("selectedMoveNames is null");
+        if (selectedMoveNames.size() < 3) throw new IllegalStateException("must select at least three distinct moves");
+        if (rule     == null) throw new IllegalArgumentException("rule is null");
+        if (strategy == null) throw new IllegalArgumentException("strategy is null");
+
+        Map<String, RpsMove> selectedMap = new HashMap<>();
+        for (String selectedMoveName : selectedMoveNames) {
+            RpsMove rpsMove = moveRepository.findByName(selectedMoveName)
+                    .orElseThrow(() -> new MoveNotFoundException("move not founded"));
+
+            selectedMap.put(selectedMoveName, rpsMove);
+        }
+
+//        Map<String, RpsMove> selectedMap = selectedMoveNames.stream()
+//                .collect(Collectors.toMap(
+//                        Function.identity(),
+//                        name -> moveRepository.findByName(name)
+//                                .orElseThrow(() -> new MoveNotFoundException("move not founded"))
+//                        )
+//                );
+
+        String sessionId = sessionManager.createId();
+        GameSession session;
+        session = new GameSession(selectedMap, rule, strategy);
+        sessionManager.create(session, sessionId);
+        return sessionId;
     }
-
-
-
-
 }
